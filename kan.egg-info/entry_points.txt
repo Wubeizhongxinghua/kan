@@ -1,0 +1,2 @@
+[console_scripts]
+kan = kan.__main__:main

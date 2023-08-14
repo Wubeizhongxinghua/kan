@@ -1,0 +1,22 @@
+[type]
+type = ""
+
+[sends]
+host = ""
+user = ""
+passwd = ""
+sender = ""
+port = 25
+
+[receivers]
+receivers = []
+
+[webhook_url]
+webhook_url = ""
+
+[contexts]
+title = ""
+context = ""
+
+[default]
+default = ""
