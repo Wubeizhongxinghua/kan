@@ -24,9 +24,9 @@ def main(ctx):
 @main.command()
 @click.argument('jobid')
 @click.option('-f','--frequency',default=60,help='Interval of checking whether the job is accomplished. default: 60s')
-@click.option('-c','--config',default=None, help="Config used to send email. If not set, the default config will be used. Use \"kan list_config\" to see all valid configs.")
+@click.option('-c','--config',default=None, help="Config used to send reminder. If not set, the default config will be used. Use \"kan list_config\" to see all valid configs.")
 def tsk(jobid, frequency, config):
-	"""Monitor a cluster task, and send email to remind if finished."""
+	"""Monitor a cluster task, and send reminder when finished."""
 	def get_filenames_without_extension(directory_path):
 		filenames = []
     
@@ -80,9 +80,9 @@ The detailed information of the task is:
 @main.command()
 @click.argument('pid')
 @click.option('-f','--frequency',default=60,help='Interval of checking whether the job is accomplished. default: 60s')
-@click.option('-c','--config',default=None, help="Config used to send email. If not set, the default config will be used. Use \"kan list_config\" to see all valid configs.")
+@click.option('-c','--config',default=None, help="Config used to send reminder. If not set, the default config will be used. Use \"kan list_config\" to see all valid configs.")
 def job(pid, frequency, config):
-	"""Monitor a shell job, and send email to remind if finished."""
+	"""Monitor a shell job, and send reminder when finished."""
 	def get_filenames_without_extension(directory_path):
 		filenames = []
     
