@@ -44,7 +44,7 @@ $ kan set-config \
 	CONFIG_NAME
 ```
 
-Besides, if you want the remind relies on webhook, you may set:
+Besides, if you want the remind to rely on webhook, you may set:
 ```shell
 $ kan set-config \
 	-t webhook \
