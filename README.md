@@ -7,6 +7,8 @@ A tiny tool for reminding if jobs running on shell, or tasks submitted on [Beiji
 > Monitoring shell jobs supported!
 + 0.3
 > Reminds based on webhook supported!
++ 0.4
+> `kan send` is now provided, where you can strightly send messages to your config address
 
 ### Requirements
 + Linux or UNIX system
@@ -96,6 +98,9 @@ $ kj PID
 $ kt JOBID
 ```
 Your kan process will continue to monitor the job/task and will not be affected by the exit of your terminal.
+
+> 0.4 update new
+A new subcommand `kan send` is know provided. You can straightly send messages to your configs (e.g. this command can be embeded into your .sh script etc.). Type `kan send --help` to see more.
 
 
 ### TODOs

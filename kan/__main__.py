@@ -4,6 +4,9 @@ from absl import app
 import os
 import time
 import toml
+import socket
+import platform
+import getpass
 base_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(base_path)
 from job_monitor import pkushow
@@ -281,6 +284,53 @@ def del_config(name):
 		if whe_default:
 			os.remove(f"{base_path}/settings.toml")
 			print(f"Default config has been removed, you'd better set a new default.")
+
+
+
+@main.command()
+@click.argument('text')
+@click.option('-c','--config', help="The config where you want to send.")
+def send(config, text):
+	"""Straightly send a message to your config address."""
+	def get_filenames_without_extension(directory_path):
+		filenames = []
+    
+		for filename in os.listdir(directory_path):
+			if os.path.isfile(os.path.join(directory_path, filename)):
+				name_without_extension = os.path.splitext(filename)[0]
+				filenames.append(name_without_extension)
+		return filenames
+	try:
+		configpath = f"{base_path}/config"
+		configs = get_filenames_without_extension(configpath)
+		
+		#jobinfo = ''.join(pkushow(jobid))
+		
+		if config is None: #use default
+			theconfig = toml.load(f'{base_path}/settings.toml')
+			
+		elif config in configs:
+			theconfig = toml.load(f'{configpath}/{config}.toml')
+		else:
+			raise ConfigNotFoundError(config)
+
+		theconfig['contexts']['title'] = f"A message from {getpass.getuser()} AT {socket.gethostname()}"
+		theconfig['contexts']['context'] = f"{text}\nfrom {platform.system()}, {platform.release()}"
+
+	except:
+		raise ConfigAbnormalError(config)
+
+	temp_cfg = f"{base_path}/{hash(time.time())}.toml"
+
+	with open(temp_cfg, 'w') as f:
+		toml.dump(theconfig, f)
+	if theconfig['type']['type'] == 'email':
+		send_email(config_file=temp_cfg)
+	if theconfig['type']['type'] == 'webhook':
+		send_webhook(config_file=temp_cfg)
+	os.remove(temp_cfg)			
+
+	
 
 if __name__=='__main__':
 	main()

@@ -1,18 +1,30 @@
 Metadata-Version: 2.1
 Name: kan
-Version: 0.3
+Version: 0.4
 Summary: Monitor your job submitted into Beijixing cluster
 Author: Li Mingyang
-Author-email: lmywork.overwrite898@silomails.com
+Author-email: limingyang200101@gmail.com
 License: MIT
 Classifier: Programming Language :: Python :: 3
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Science/Research
 Classifier: Topic :: Software Development :: Build Tools
 Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: click>=8.1.6
+Requires-Dist: toml>=0.10.2
+Requires-Dist: absl-py
 
 # kan
-A tiny tool for reminding if jobs running on shell, or tasks submitted on [Beijixing](http://www.aais.pku.edu.cn/clshpc/) finished via email.
+A tiny tool for reminding if jobs running on shell, or tasks submitted on [Beijixing](http://www.aais.pku.edu.cn/clshpc/) finished via email or webhook.
+
+### New version features
+
++ 0.2
+> Monitoring shell jobs supported!
++ 0.3
+> Reminds based on webhook supported!
++ 0.4
+> `kan send` is now provided, where you can strightly send messages to your config address
 
 ### Requirements
 + Linux or UNIX system
@@ -40,12 +52,21 @@ After installing, you need to config the sender email and the receiver email by
 
 ```shell
 $ kan set-config \
+	-t email \
 	-h SMTP_HOST_OF_EMAIL_SERVER \
 	-d PORT \
 	-u USER_NAME_OF_EMAIL_ACCOUNT \
 	-p PASSWD_OR_TOKEN \
 	-s SENDER_EMAIL \
 	-r RECEIVER_EMAIL \
+	CONFIG_NAME
+```
+
+Besides, if you want the remind to rely on webhook, you may set:
+```shell
+$ kan set-config \
+	-t webhook \
+	-w WEBHOOK_URL \
 	CONFIG_NAME
 ```
 
@@ -79,7 +100,7 @@ $ kan job PID & # for job running on shell, not recommended
 $ kan tsk JOBID & # for task submitted to cluster, not recommended
 ```
 
-Then `kan` will continue monitoring the job/task by is PID/JOBID until the job/task ends. After that, an email from the sender to the receiver according to your config will be sent.
+Then `kan` will continue monitoring the job/task by is PID/JOBID until the job/task ends. After that, an email from the sender to the receiver, or a reminder via webhook according to your config will be sent.
 
 **To prevent your kan process from being interrupted when the terminal exits, you can set the following statement in your `.bashrc` and then `source` it.**
 
@@ -94,8 +115,9 @@ $ kt JOBID
 ```
 Your kan process will continue to monitor the job/task and will not be affected by the exit of your terminal.
 
+> 0.4 update new
+A new subcommand `kan send` is know provided. You can straightly send messages to your configs (e.g. this command can be embeded into your .sh script etc.). Type `kan send --help` to see more.
+
 
 ### TODOs
-- [] Webhook based reminds via Feishu, Weixin and Dingding, etc.
-
-- [] Refine remind contexts.
+- [ ] Refine remind contexts.
