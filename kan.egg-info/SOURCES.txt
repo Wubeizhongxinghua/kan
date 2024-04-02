@@ -16,4 +16,11 @@ kan.egg-info/entry_points.txt
 kan.egg-info/not-zip-safe
 kan.egg-info/requires.txt
 kan.egg-info/top_level.txt
+kan/__pycache__/exceptions.cpython-310.pyc
+kan/__pycache__/exceptions.cpython-312.pyc
+kan/__pycache__/job_monitor.cpython-310.pyc
+kan/__pycache__/job_monitor.cpython-312.pyc
+kan/__pycache__/send_email.cpython-310.pyc
+kan/__pycache__/send_email.cpython-312.pyc
+kan/__pycache__/send_webhook.cpython-312.pyc
 kan/config/empty.toml

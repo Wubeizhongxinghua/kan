@@ -99,9 +99,6 @@ $ kt JOBID
 ```
 Your kan process will continue to monitor the job/task and will not be affected by the exit of your terminal.
 
-> 0.4 update new
-A new subcommand `kan send` is know provided. You can straightly send messages to your configs (e.g. this command can be embeded into your .sh script etc.). Type `kan send --help` to see more.
+### Latest update: 0.4
+A new subcommand `kan send` is now provided. You can straightly send messages to your configs (e.g. this command can be embeded into your `.sh` script etc.). Type `kan send --help` to see more.
 
-
-### TODOs
-- [ ] Refine remind contexts.

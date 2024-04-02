@@ -10,9 +10,6 @@ Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Science/Research
 Classifier: Topic :: Software Development :: Build Tools
 Classifier: License :: OSI Approved :: MIT License
-Requires-Dist: click>=8.1.6
-Requires-Dist: toml>=0.10.2
-Requires-Dist: absl-py
 
 # kan
 A tiny tool for reminding if jobs running on shell, or tasks submitted on [Beijixing](http://www.aais.pku.edu.cn/clshpc/) finished via email or webhook.
